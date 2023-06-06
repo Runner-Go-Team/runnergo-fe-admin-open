@@ -44,14 +44,26 @@ export const OSS_Config = {
     };
 ```
 
+### 配置存/取Cookie 的Domain
+
+在根目录的config文件夹中的server文件中,主要用于cookie域相关数据的共享.例如已登录状态.
+
+```js
+   const DOMAIN = {
+        development: '', // 开发环境domain 可为空
+        test: '测试环境domain',
+        production: '线上环境domain',
+}
+```
+
 ## 技术栈
 
 - react, 基于react 17.0.2 版本进行开发
-- react-flow, 实现场景内API节点块的拖拉拽和连线等操作
-- react-dnd, 实现接口管理、场景管理等目录区的拖拽排序等操作
-- monaco-editor, 实现request、response等实现代码编写
 - less, 基于css预处理less实现css的管理与编写
-- arco-design, 基于字节开源组件库实现部分组件编写
-- adesign-react, 基于apipost开源组件库实现部分组件编写
+- @arco-design/web-react, 基于字节开源组件库实现部分组件编写
 - react-i18next, 实现多语言切换
+- event-bus-hooks, 是一个效力于react的事件发布订阅工具
+- axios, 一个基于promise的网络请求库,用于调用后端接口
+
+
 
