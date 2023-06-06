@@ -1,0 +1,117 @@
+.arco-modal.runnerGo-team-member-modal {
+  width: 948px;
+  height: 624px;
+
+  .member-title {
+    height: 54px;
+    margin-top: 8px;
+    background: var(--bg);
+    border-radius: 2px;
+  }
+
+  .member-search-input {
+    display: flex;
+    justify-content: space-between;
+    .arco-input-inner-wrapper {
+      background-color: var(--bg) !important;
+    }
+
+    .arco-btn {
+      .arco-icon {
+        fill: none;
+      }
+    }
+  }
+
+  .arco-modal-content {
+    .arco-select {
+      background-color: var(--bg);
+      padding: 0 6px;
+    }
+
+    .arco-select-view {
+      height: 36px;
+      line-height: 36px;
+      padding: 0;
+    }
+
+    .member-title,
+    .member-item {
+      display: flex;
+      align-items: center;
+
+      &>.name {
+        width: 33%;
+        padding-left: 16px;
+      }
+
+      .join-time {
+        width: 17%;
+      }
+
+      .inviter {
+        width: 10%;
+        max-width: 85px;
+      }
+
+      .company-role,
+      .team-role {
+        width: 15%;
+      }
+
+      .operation {
+        width: 10%;
+        display: flex;
+      }
+    }
+    .member-list{
+      max-height: 389px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .member-item {
+      width: 100%;
+      padding: 20px 0;
+
+      &>.name {
+        display: flex;
+
+        .headPortrait {
+          display: flex;
+          align-items: center;
+
+          img {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .userData {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+        .name{
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .email,
+        .name{
+          max-width: 229px;
+        }
+      }
+    }
+
+    .member-item:hover {
+      background-color: var(--select-hover);
+    }
+  }
+
+  .arco-modal-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

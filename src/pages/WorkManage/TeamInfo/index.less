@@ -1,0 +1,181 @@
+.team-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    .arco-input-inner-wrapper:hover {
+      background-color: var(--bg);
+    }
+
+    .team-type {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--theme-color);
+      border-radius: 3px;
+      color: var(--theme-color);
+      font-size: 12px;
+      text-align: center;
+      line-height: 22px;
+    }
+
+    .name {
+      margin-left: 10px;
+      font-weight: 600;
+      font-size: 20px;
+      max-width: 150px;
+      height: 28px;
+
+      .arco-input {
+        background-color: var(--bg);
+      }
+    }
+
+    .arco-icon-edit {
+      margin-left: 15px;
+    }
+
+    .parvite {
+      border: 1px solid var(--sub-color-2);
+      color: var(--sub-color-2);
+    }
+  }
+
+  .create_time {
+    margin-top: 10px;
+    color: var(--font-2);
+    font-size: 14px;
+  }
+
+  .description {
+    margin-top: 20px;
+  }
+
+  .operation-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 16px;
+
+    .arco-btn {
+      width: 144px;
+      height: 40px;
+    }
+  }
+
+  .latest-plan-title {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    overflow: hidden;
+
+    .arco-btn-error {
+      height: 35px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .arco-btn {
+      margin-top: 10px;
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    .latest-plan-list {
+      overflow: hidden;
+      overflow-y: auto;
+
+      .not-plan {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+
+      .list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 316px;
+        height: 60px;
+        border: 1px solid var(--border-line);
+        padding: 10px 40px;
+        margin-top: 20px;
+
+        label {
+          line-height: 14px;
+          font-size: 12px;
+          color: var(--font-3);
+        }
+
+        .left,
+        .right {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 50%;
+
+          .name {
+            font-size: 14px;
+            max-width: 150px;
+          }
+        }
+
+        .left {
+          .user-data {
+            display: flex;
+            margin-top: 10px;
+            align-items: center;
+
+            img {
+              height: 14px;
+              width: 14px;
+              border-radius: 50%;
+            }
+
+            .name {
+              margin-left: 4px;
+              line-height: 16px;
+            }
+          }
+        }
+
+        .right {
+          .name {
+            margin-top: 10px;
+          }
+        }
+
+        .head-portrait {
+          img {
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.arco-modal.runnerGo-disband-team-modal {
+  .arco-modal-content {
+    p {
+      max-height: 128px;
+    }
+  }
+}
+.arco-modal.runnerGo-team-make-public-modal {
+  .arco-modal-content {
+    p {
+      max-height: 77px;
+    }
+  }
+}

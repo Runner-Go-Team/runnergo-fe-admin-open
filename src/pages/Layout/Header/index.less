@@ -1,0 +1,65 @@
+.layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--module);
+    height: 50px;
+    padding: 9px 10px;
+    box-sizing: border-box;
+
+    .logo {
+        width: 117px;
+        height: 32px;
+    }
+
+
+    .r {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        .operation-log{
+            font-size: 12px;
+            padding: 6px 8px;
+            color: var(--font-1);
+            border-radius: 5px;
+            background: var(--border-line);
+            margin-left: 12px;
+            cursor: pointer;
+        }
+        .avatar {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .theme {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 56px;
+            height: 30px;
+            background: var(--bg);
+            border-radius: 5px;
+            padding: 3px;
+            margin-left: 12px;
+
+            &>span {
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+                border-radius: 2.5px;
+                cursor: pointer;
+                svg {
+                    font-size: 16px;
+                }
+            }
+            &>span.active{
+                background: var(--bg-1);
+            }
+        }
+    }
+}

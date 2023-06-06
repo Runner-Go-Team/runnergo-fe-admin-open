@@ -1,0 +1,120 @@
+.left-bar {
+    margin-left: 14px;
+    padding-top: 5px;
+    .arco-menu.arco-menu-collapse{
+        .arco-menu-collapse-button{
+            left: 24px;
+        }
+        .runnerGo-menu-item-link{
+            svg{
+                margin-left: 5px;
+            }
+        }
+    }
+    .arco-menu {
+        background-color: transparent;
+        .arco-menu-collapse-button{
+            left: 12px;
+            background-color:transparent;
+            .arco-icon{
+                font-size: 18px;
+            }
+        }
+        .arco-menu-collapse-button:hover{
+            background-color:transparent;
+        }
+        .arco-menu-item {
+            margin: 0 0 8px 0 !important;
+            display: flex;
+            align-items: center;
+            height: 30px;
+
+            a {
+                display: flex;
+                align-items: center;
+            }
+
+            svg {
+                // margin-left: 8px;
+                font-size: 16px;
+                color: var(--font-3);
+            }
+
+            label {
+                font-size: 12px;
+                color: var(--font-3);
+            }
+        }
+
+        .arco-menu-item:active {
+            background-color: transparent !important;
+        }
+
+        .arco-menu-item.arco-menu-selected .arco-icon {
+            color: var(--theme-color);
+        }
+
+        .arco-menu-selected {
+            background-color: var(--module);
+            border-radius: 5px;
+
+            label {
+                color: var(--content-color-primary);
+            }
+        }
+    }
+
+    .dividing-line {
+        height: 0px;
+        border-bottom: 1px solid var(--border-line);
+        margin-bottom: 8px;
+    }
+}
+
+.arco-menu-item-tooltip a::before {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+        margin-right: 8px;
+    }
+
+    .arco-icon {
+        margin-right: 8px;
+    }
+}
+
+.arco-tooltip {
+    .arco-trigger-arrow {
+        border-left: 1px solid var(--select-hover) !important;
+        border-bottom: 1px solid var(--select-hover) !important;
+    }
+
+    .arco-tooltip-content {
+        border: 1px solid var(--select-hover) !important;
+
+        .runnerGo-menu-item-link {
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 16px;
+                color: var(--font-3);
+                margin-right: 8px;
+            }
+
+            label {
+                font-size: 12px;
+                color: var(--font-3);
+            }
+        }
+
+        .runnerGo-menu-item-link.active {
+            .arco-icon {
+                color: var(--theme-color);
+            }
+        }
+    }
+}

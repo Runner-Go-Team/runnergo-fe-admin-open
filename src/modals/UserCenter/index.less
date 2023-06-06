@@ -1,0 +1,190 @@
+.arco-modal.runnerGo-user-center-modal {
+  width: 900px;
+  height: 724px;
+  padding: 0px;
+
+  .logo-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .head-picture,
+  .name,
+  .role {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .name,
+  .email,
+  .account-number,
+  .password {
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .head-picture {
+    .avatar-item {
+      position: relative;
+
+      &:hover .avatar-mask {
+        display: flex;
+      }
+
+      .avatar-mask {
+        display: none;
+        background-color: var(--avatar-hover) !important;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        color: var(--common-white);
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  .name {
+    font-size: 20px;
+
+    input,
+    .arco-input-inner-wrapper,
+    .text-view {
+      width: 105px;
+    }
+
+    .arco-input-inner-wrapper {
+      background-color: var(--bg);
+    }
+  }
+
+  .role {
+    &>div {
+      // width: 133px;
+      // height: 28px;
+      background: rgba(64, 82, 236, 0.1);
+      border: 1px solid #4052EC;
+      border-radius: 6px;
+      padding: 4px 4px 4px 11px;
+      color: #4052EC;
+    }
+  }
+
+  .account-number,
+  .email,
+  .password {
+    border-bottom: 1px solid #26263C;
+    margin: 12px 191px 0 191px;
+    padding-bottom: 8px;
+
+    .title {
+      color: var(--font-1);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .arco-input-inner-wrapper {
+      background-color: var(--bg);
+      width: 95%;
+    }
+
+    .input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .text-view {
+        color: var(--font-3);
+      }
+    }
+  }
+
+  .team-role {
+    margin: 12px 130px 0 191px;
+
+    .title {
+      color: var(--font-1);
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      height: 124px;
+      overflow-y: auto;
+
+      .item {
+        padding: 4px 8px;
+        height: 28px;
+        border: 1px solid #36364F;
+        border-radius: 6px;
+        color: var(--font-2);
+      }
+    }
+  }
+
+  .quit-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+
+    .arco-btn {
+      width: 517px;
+      height: 40px;
+    }
+  }
+}
+
+.arco-modal.runnerGo-edit-password-modal {
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .lable {
+      color: var(--font-1);
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 40px;
+    }
+  }
+  .arco-modal-footer{
+    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 92px 0;
+    transform: translateX(-200px);
+    left: 50%;
+    padding: 0;
+    .arco-btn {
+      width: 190px;
+      height: 40px;
+      margin-left: 0;
+    }
+  }
+
+  .arco-input-inner-wrapper {
+    background-color: var(--bg) !important;
+    .arco-input{
+      background-color: var(--bg) !important;
+    }
+  }
+}
