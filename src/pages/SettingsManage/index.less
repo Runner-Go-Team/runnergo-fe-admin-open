@@ -1,0 +1,71 @@
+.settings-manage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &>.title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &>.content {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    margin-top: 8px;
+
+    .left {
+      width: 140px;
+      padding: 10px;
+      border-radius: 6px;
+      height: 100%;
+      background: var(--module);
+
+      .arco-menu-inline-header {
+        line-height: 29px;
+        color: var(--theme-color) !important;
+
+        svg {
+          color: var(--theme-color) !important;
+        }
+      }
+
+      .arco-menu {
+        background-color: transparent;
+        font-size: 12px;
+
+        .arco-menu-item {
+          height: 29px;
+          line-height: 29px;
+          color: var(--font-3);
+
+          a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+          }
+        }
+
+        .arco-menu-item:hover {
+          color: var(--theme-color);
+          background-color: var(--theme-10);
+        }
+
+        .arco-menu-item.arco-menu-selected {
+          color: var(--theme-color);
+          background-color: var(--theme-10);
+        }
+      }
+    }
+
+    .right {
+      margin-left: 2px;
+      flex: 1;
+      height: 100%;
+      top: 100px;
+      background: var(--module);
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+  }
+}

@@ -28,16 +28,23 @@ const OperationLog = (props) => {
     204: t('text.remove_team_member'),
     205: t('text.change_team_role'),
     206: t('modal.dissmissTeam'),
-    207 :t('text.transition_team_admin'),
+    207: t('text.transition_team_admin'),
     301: t('text.new_role'),
     302: t('text.setting_role_permisson'),
     303: t('text.role_delete'),
+    401: t('text.new_third_notif'),
+    402: t('text.update_third_notif'),
+    403: t('text.open_third_notif'),
+    404: t('text.del_third_notif'),
+    501: t('text.new_third_group_notif'),
+    502: t('text.update_third_group_notif'),
+    503: t('text.del_third_group_notif'),
   }
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(10);
   const [operationList, setOperationList] = useState([]);
-  const [retentionDays,setRetentionDays]=useState(7)
+  const [retentionDays, setRetentionDays] = useState(7)
   const [] = useState([]);
   const getOperationlog = debounce(async () => {
     try {
@@ -49,7 +56,7 @@ const OperationLog = (props) => {
         if (isNumber(resp?.data?.total)) {
           setTotal(resp?.data?.total);
         }
-        if(isNumber(resp?.data?.retention_days)){
+        if (isNumber(resp?.data?.retention_days)) {
           setRetentionDays(resp?.data?.retention_days);
         }
         const operations = resp?.data?.operations || [];
@@ -121,7 +128,7 @@ const OperationLog = (props) => {
       <div className="teamwork-log-content">
         <Collapse
           defaultActiveKey={['1']}
-          style={{ maxHeight: "450px",overflowY: 'auto' }}
+          style={{ maxHeight: "450px", overflowY: 'auto' }}
           expandIconPosition='right'
           bordered={false}
         >
@@ -141,11 +148,11 @@ const OperationLog = (props) => {
                     </div>
                     <div className="action">
                       <HandleTags type={logItem.category} />
-                      <div className="text-ellipsis logitem-text" style={{ marginLeft: '6px',display:'flex' }}>
+                      <div className="text-ellipsis logitem-text" style={{ marginLeft: '6px', display: 'flex' }}>
 
-                      <Tooltip content={`${logType[logItem.action]} - ${logItem.name}`}>
-                        <span className='text-ellipsis'> {logType[logItem.action]} - {logItem.name}</span>
-                          </Tooltip>
+                        <Tooltip content={`${logType[logItem.action]} - ${logItem.name}`}>
+                          <span className='text-ellipsis'> {logType[logItem.action]} - {logItem.name}</span>
+                        </Tooltip>
                       </div>
                     </div>
                     <div className="time">

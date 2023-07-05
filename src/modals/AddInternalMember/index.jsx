@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Modal, Button, Input, Checkbox, Select, Message, Tooltip } from '@arco-design/web-react';
+import { Modal, Button, Input, Checkbox, Select, Message, Tooltip, Pagination } from '@arco-design/web-react';
 import { IconSearch } from '@arco-design/web-react/icon';
 import { getRoleList } from '@services/role'
 import { getTeamInviteMemberList, addTeamMember } from '@services/team';
@@ -7,19 +7,23 @@ import { ServiceGetUserRole } from '@services/role';
 import { useTranslation } from 'react-i18next';
 import Bus from '@utils/eventBus';
 import './index.less';
-import { debounce, isArray, set } from 'lodash';
+import { debounce, isArray, isNumber, set } from 'lodash';
 import { useSelector } from 'react-redux';
 const Option = Select.Option;
 
 const AddInternalMember = (props) => {
-  const { onCancel, team_id, updateTeamList,updateTeamMemberList } = props;
+  const { onCancel, team_id, updateTeamList, updateTeamMemberList } = props;
   const [indeterminate, setIndeterminate] = useState(false);
   const [checkAll, setCheckAll] = useState(false);
   const [value, setValue] = useState([]);
+  const [valueRole, setValueRole] = useState({});
   const [defalutValue, setDefalutValue] = useState([]);
   const [memberList, setMemberList] = useState([]);
   const [teamRoleList, setTeamRoleList] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(null);
+  const [pageSize, setPageSize] = useState(20);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(10);
   const teamPermissions = useSelector((store) => store?.permission?.teamPermissions?.[team_id]) || [];
   const companyPermissions = useSelector((store) => store?.permission?.companyPermissions);
   const { t } = useTranslation();
@@ -39,48 +43,66 @@ const AddInternalMember = (props) => {
       }
       const resp = await getTeamInviteMemberList({
         team_id,
-        keyword: searchValue
+        keyword: searchValue || '',
+        page,
+        size: pageSize
       });
+      if (isNumber(resp?.data?.total)) {
+        setTotal(resp.data.total);
+      }
       if (isArray(resp?.data?.members)) {
         setMemberList(resp.data.members);
-        let initValue = resp?.data?.members.reduce((total, currentValue) => {
-          if (Boolean(currentValue?.team_role_id)) {
-            total.push(currentValue?.user_id);
+        let newDefaultValue = [];
+        resp?.data?.members.forEach(currentValue => {
+          if (Boolean(currentValue?.team_role_id) && !defalutValue.includes(currentValue?.user_id)) {
+            newDefaultValue.push(currentValue?.user_id);
           }
-          return total;
-        }, [])
-        if (isArray(initValue) && initValue.length > 0) {
-          setValue(initValue);
-          setDefalutValue(initValue);
+        });
+
+        if (isArray(newDefaultValue)) {
+          setDefalutValue([...defalutValue, ...newDefaultValue]);
         }
       }
     } catch (error) { }
   }
   const debounceInitCompanyMemberList = debounce(() => initCompanyMemberList(), 200);
   useEffect(() => {
-    if (searchValue) {
-      debounceInitCompanyMemberList();
-    } else {
-      initCompanyMemberList();
+    initCompanyMemberList();
+  }, [page, pageSize]);
+
+  useEffect(() => {
+    if (searchValue != null) {
+      if (page != 1) {
+        // 回到第一页
+        setPage(1);
+      } else {
+        debounceInitCompanyMemberList();
+      }
     }
   }, [searchValue]);
 
   const onChangeAll = (checked) => {
     if (checked || indeterminate) {
       setCheckAll(true);
-      setValue(memberList.map((item) => item?.user_id));
+      const newValue = memberList.reduce((arr, item) => {
+        if (item?.user_id && !defalutValue.includes(item?.user_id)) {
+          arr.push(item?.user_id)
+        }
+        return arr;
+      }, [])
+      setValue([...value, ...newValue]);
     } else {
       setCheckAll(false);
-      setValue([...defalutValue]);
+      setValue([]);
     }
   }
   useEffect(() => {
-    if (!!(value.length && value.length !== memberList.length)) {
+    if (!!(value.length && value.length !== memberList.filter((item) => !defalutValue.includes(item?.user_id)).length)) {
       setIndeterminate(true);
     } else {
       setIndeterminate(false);
     }
-    if (!!(value.length === memberList.length)) {
+    if (!!(value.length === memberList.filter((item) => !defalutValue.includes(item?.user_id)).length)) {
       setCheckAll(true);
     }
   }, [value])
@@ -88,7 +110,7 @@ const AddInternalMember = (props) => {
     let temp_check_list = [...value];
     if (checked) {
       const itemExists = temp_check_list.some((item) => item === user_id);
-      if (!itemExists) {
+      if (!itemExists && !defalutValue.includes(user_id)) {
         temp_check_list.push(user_id);
         setValue(temp_check_list);
       }
@@ -96,20 +118,19 @@ const AddInternalMember = (props) => {
       setValue(temp_check_list.filter((item) => item != user_id))
     }
   }
-
   const isChecked = (user_id) => {
-    if (value.includes(user_id)) {
+    if (value.includes(user_id) || defalutValue.includes(user_id)) {
       return true;
     }
 
     return false;
   }
   const addTeamMemberOnClick = () => {
-    const members = memberList.reduce((last, current) => {
-      if (value.includes(current?.user_id) && !defalutValue.includes(current?.user_id)) {
+    const members = value.reduce((last, user_id) => {
+      if (!defalutValue.includes(user_id)) {
         last.push({
-          user_id: current?.user_id,
-          team_role_id: current?.team_role_id || teamRoleList[0]?.role_id //角色ID
+          user_id: user_id,
+          team_role_id: valueRole[user_id] || teamRoleList[0]?.role_id //角色ID
         })
       }
       return last;
@@ -141,28 +162,34 @@ const AddInternalMember = (props) => {
       focusLock={true}
       footer={
         <>
-          <Button
-            className='btn-close'
-            onClick={() => {
-              onCancel();
-            }}
-          >
-           {t('btn.close')}
-          </Button>
-          <Tooltip disabled={checkPermission('team_save_member')} position='top' trigger='hover' content={t('tooltip.permission_denied')}>
+          <Pagination pageSize={pageSize} onPageSizeChange={(val) => {
+            setPageSize(val);
+          }} size='default' current={page} onChange={(val) => {
+            setPage(val);
+          }} total={total} showTotal showJumper sizeCanChange sizeOptions={[20, 30, 40, 50, 80, 100]} />
+          <div className='footer-btns'>
             <Button
-              disabled={!checkPermission('team_save_member')}
-              onClick={addTeamMemberOnClick}
+              className='btn-close'
+              onClick={() => {
+                onCancel();
+              }}
             >
-              {t('btn.add')}
+              {t('btn.close')}
             </Button>
-          </Tooltip>
-
+            <Tooltip disabled={checkPermission('team_save_member')} position='top' trigger='hover' content={t('tooltip.permission_denied')}>
+              <Button
+                disabled={!checkPermission('team_save_member')}
+                onClick={addTeamMemberOnClick}
+              >
+                {t('btn.add')}
+              </Button>
+            </Tooltip>
+          </div>
         </>
       }
     >
       <div className="member-search-input">
-        <Input allowClear value={searchValue} onChange={setSearchValue} style={{ width: 238, height: 28 }} prefix={<IconSearch />} placeholder={t('text.search_account_or_nickname')} />
+        <Input allowClear value={searchValue || ''} onChange={setSearchValue} style={{ width: 238, height: 28 }} prefix={<IconSearch />} placeholder={t('text.search_account_or_nickname')} />
       </div>
 
 
@@ -198,6 +225,10 @@ const AddInternalMember = (props) => {
                       bordered={false}
                       style={{ width: 90, height: 20 }}
                       onChange={(value) => {
+                        setValueRole(prevState => ({
+                          ...prevState,
+                          [item?.user_id]: value // 修改指定属性的值
+                        }));
                         const newItems = memberList.map((i) => {
                           if (i?.user_id == item?.user_id) {
                             return { ...i, team_role_id: value }
@@ -208,7 +239,7 @@ const AddInternalMember = (props) => {
                         setMemberList(newItems);
                       }}
                       value={item?.team_role_id || teamRoleList[0]?.role_id}
-                      getPopupContainer={()=>document.body}
+                      getPopupContainer={() => document.body}
                       triggerProps={{
                         autoAlignPopupWidth: false,
                         autoAlignPopupMinWidth: true,

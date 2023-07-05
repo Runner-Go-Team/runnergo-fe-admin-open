@@ -141,6 +141,11 @@ const UserCenter = (props) => {
           Message.error(currentTemplate.error)
           throw '';
         }
+      }else if(type === 'account'){
+        if(trim(value).length < 6 || trim(value).length > 30){
+          Message.error('账号为6-30位')
+          throw '';
+        }
       } else if (!isString(value) || value.length <= 0) {
         Message.error(currentTemplate.error)
         throw '';
@@ -175,9 +180,9 @@ const UserCenter = (props) => {
       >
         <div className='info'>
           {/* <div className='lable'>{t('modal.editPwd')}</div> */}
-          <Input.Password allowClear onChange={(val) => setCurrentPwd(val)} value={currentPwd} placeholder={t('placeholder.currentPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
-          <Input.Password maxLength={20} allowClear onChange={(val) => setPassword(val)} value={password} placeholder={t('placeholder.newPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
-          <Input.Password maxLength={20} allowClear onChange={(val) => setRepeatPassword(val)} value={repeatPassword} placeholder={t('placeholder.confirmPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
+          <Input.Password autoComplete="new-password" allowClear onChange={(val) => setCurrentPwd(val)} value={currentPwd} placeholder={t('placeholder.currentPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
+          <Input.Password autoComplete="new-password" maxLength={20} allowClear onChange={(val) => setPassword(val)} value={password} placeholder={t('placeholder.newPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
+          <Input.Password autoComplete="new-password" maxLength={20} allowClear onChange={(val) => setRepeatPassword(val)} value={repeatPassword} placeholder={t('placeholder.confirmPwd')} style={{ width: 400, height: 46, margin: '20px auto' }} />
         </div>
       </Modal >
       <EditVatarModal visible={editAvatar} setVisible={setEditAvatar} avatar={userData?.avatar} />

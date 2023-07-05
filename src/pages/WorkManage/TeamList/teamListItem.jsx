@@ -5,6 +5,7 @@ import { Input, Button, Dropdown, Menu, Message, } from '@arco-design/web-react'
 import { IconStar, IconStarFill, IconMore } from '@arco-design/web-react/icon';
 import Bus from '@utils/eventBus';
 import { useTranslation } from 'react-i18next';
+import { ServiceGetUserVerifyUsable } from '@services/user';
 import { FotmatTimeStamp, openLinkInNewTab } from '@utils';
 import { serviceTeamCollection } from '@services/team';
 import UserHeadPortraitList from './userHeadPortraitList';
@@ -26,8 +27,17 @@ const TeamListItem = (props) => {
   const onClickMenuItem = (key, team_id) => {
     switch (key) {
       case 'joinTeam':
-        let newTabUrl = `${FE_WOEK_URL}/#/index?team_id=${team_id}`;
-        openLinkInNewTab(newTabUrl);
+        ServiceGetUserVerifyUsable({team_id}).then((res)=>{
+          if(res?.code == 0 && res?.data?.is_usable){
+            let newTabUrl = `${FE_WOEK_URL}/#/index?team_id=${team_id}`;
+            openLinkInNewTab(newTabUrl);
+          }else{
+            Message.error('您当前不在该团队中!');
+            setTimeout(() => {
+              location.reload();
+            }, 1500);
+          }
+        })
         break;
       case 'addMember': //添加成员
         if (value?.type == 1) {

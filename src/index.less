@@ -15,6 +15,16 @@ body {
 
 .arco-menu {
 
+  .arco-menu-item:hover {
+    color: var(--theme-color);
+    background-color: var(--theme-10);
+  }
+
+  .arco-menu-item.arco-menu-selected {
+    color: var(--theme-color);
+    background-color: var(--theme-10);
+  }
+
   .arco-menu-item,
   .arco-menu-pop,
   .arco-menu-inline-header {
@@ -52,14 +62,29 @@ body {
   color: var(--content-color-primary);
   background-color: transparent;
 }
-
+.arco-tooltip-content{
+  background-color: var(--border-line);
+  color: var(--font-1);
+  font-size: 12px;
+  box-shadow: 0 0px 0px #ccc;
+  border: none !important;
+}
+.arco-trigger-arrow-container{
+  .arco-trigger-arrow{
+    background-color: var(--border-line) !important;
+    border: none !important;
+  }
+}
 .arco-input:focus,
 .arco-input.arco-input-focus {
   border-color: transparent;
   background-color: transparent;
   box-shadow: 0 0 0 0 var(--color-primary-light-2);
 }
-
+.arco-modal-mask{
+  opacity: 0.8;
+  background: var(--bg);
+}
 .arco-input-inner-wrapper {
   background-color: var(--module);
   border-radius: 5px !important;
@@ -103,7 +128,7 @@ body {
 }
 .arco-btn.arco-btn-outline {
   background: var(--theme-20) !important;
-  border: 1px solid var(--theme-color);
+  border: none;
 }
 
 .arco-btn:hover {
@@ -180,7 +205,7 @@ body {
   background-color: var(--module);
   color: var(--font-1);
   padding: 0px 12px;
-
+  border-radius: 10px;
   .arco-modal-header {
     border: none;
     padding: 0 20px;
@@ -212,10 +237,13 @@ body {
     bottom: 0;
     right: 0;
     background: var(--modal-footer);
-
+    border-radius: 0px 0px 10px 10px;
     .btn-close,
     &>.arco-btn:first-child {
       background: var(--border-line) !important;
+      color: var(--font-1);
+    }
+    .btn-close:hover{
       color: var(--font-1);
     }
   }
@@ -292,7 +320,26 @@ body {
   background-color: var(--select-hover);
   color: var(--font-1);
 }
-
+.arco-table{
+  .arco-table-content-inner{
+    .arco-table-header::-webkit-scrollbar,
+    .arco-table-header::-webkit-scrollbar-thumb{
+      background: transparent;
+      color: transparent;
+      border-color: transparent;
+      background-color: transparent;
+    }
+    .arco-table-header{
+      margin-bottom: 0;
+      overflow-x: hidden;
+      background-color:var(--bg)
+    }
+    .arco-table-body{
+      overflow: auto;
+      background-color: transparent;
+    }
+  }
+}
 .arco-table-th {
   color: var(--font-1);
   background-color: var(--bg);
@@ -321,15 +368,15 @@ body {
 }
 
 .arco-pagination {
-  white-space: nowrap;
-  .arco-pagination-jumper-input {
-    border: 1px solid var(--border-line);
-    border-radius: 5px;
-  }
+  
+  // .arco-pagination-jumper-input {
+  //   border: 1px solid var(--border-line);
+  //   border-radius: 5px;
+  // }
 
-  .arco-pagination-jumper-text-goto {
-    color: var(--font-1);
-  }
+  // .arco-pagination-jumper-text-goto {
+  //   color: var(--font-1);
+  // }
 }
 
 .arco-collapse-item-header {
@@ -373,9 +420,53 @@ body {
     background-color: var(--module);
   }
 }
+.arco-tree-select-popup{
+  background-color: var(--bg);
+
+  .arco-tree-node{
+    background-color: var(--bg);
+    .arco-tree-node-title{
+
+    }
+    .arco-tree-node-title:hover{
+      background-color: var(--module);
+    }
+  }
+  .arco-tree-node:hover{
+    background-color: var(--module);
+  }
+}
 .arco-menu-dark .arco-menu-item.arco-menu-selected{
-  background-color: var(--module);
+  // background-color: var(--module);
 }
 .arco-input-clear-icon{
   color: var(--font-1);
+}
+
+// 分页pagination
+.arco-pagination {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  .arco-pagination-item-active {
+      color: var(--theme-color) !important;
+      background-color: var(--theme-10) !important;
+      border: 1px solid var(--theme-color) !important;
+      border-radius: 4px !important;
+  }
+
+  .arco-pagination-item {
+      border-radius: 4px;
+  }
+
+  .arco-select-view {
+      background-color: transparent !important;
+      border: 1px solid var(--border-line) !important;
+      border-radius: 5px !important;
+  }
+
+  .arco-input {
+      background-color: transparent !important;
+      border: 1px solid var(--border-line) !important;
+  }
 }

@@ -5,6 +5,9 @@
     --bg: #F2F3F5;
     /* 背景1 */
     --bg-1: #FFFFFF;
+
+    --bg-2: rgba(242, 243, 245, 0.5);
+
     /* 模块 */
     --module: #FFFFFF;
     /* 主题色 */
@@ -38,6 +41,7 @@
 
     /* 边框、线 */
     --border-line: #F2F2F2;
+    --border-line-1: #FCFCFC;
     /* 场景里-选中 */
     --scene-select: rgba(192, 192, 192, 0.2);
     /* 场景接口控制器边框 */
@@ -87,4 +91,6 @@
     --font-3: #666666;
     --font-color: #2B2B2B;
     --icon-color: #2B2B2B;
+    /* 表格删除红色 */
+    --table-delete: #D94525;
 }

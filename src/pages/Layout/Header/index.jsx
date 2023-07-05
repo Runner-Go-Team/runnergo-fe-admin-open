@@ -1,14 +1,16 @@
 import React from 'react';
-import { Dropdown } from '@arco-design/web-react'
+import { Dropdown, Tooltip } from '@arco-design/web-react'
 import { IconSunFill, IconMoonFill } from '@arco-design/web-react/icon';
 import UserCard from '@components/User/Card';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
+import { FE_WOEK_URL } from '@config';
 import './index.less';
 import SvgLogoDark from '@assets/logo/runner_dark.svg';
 import SvgLogoWhite from '@assets/logo/runner_white.svg';
 import Bus from '@utils/eventBus';
+import { openLinkInNewTab } from '@utils';
 
 const Header = () => {
     const theme = useSelector((store) => store?.user?.theme);
@@ -17,7 +19,9 @@ const Header = () => {
     const { t } = useTranslation();
     return (
         <div className='layout-header'>
-            {theme == 'dark' ? <SvgLogoDark /> : <SvgLogoWhite />}
+            <Tooltip content={t('menu.work')}>
+                {theme == 'dark' ? <SvgLogoDark onClick={() => openLinkInNewTab(FE_WOEK_URL)} /> : <SvgLogoWhite onClick={() => openLinkInNewTab(FE_WOEK_URL)} />}
+            </Tooltip>
             <div className="r">
                 <Dropdown trigger='click' droplist={<UserCard />} position='bl'>
                     <img className='avatar' src={avatar || "https://apipost.oss-cn-beijing.aliyuncs.com/kunpeng/avatar/default1.png"} alt="" />

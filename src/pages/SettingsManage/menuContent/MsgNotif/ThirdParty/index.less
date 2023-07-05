@@ -1,0 +1,104 @@
+.msg-notif-third-party {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0px;
+  height: 100%;
+  font-weight: 400;
+  font-size: 14px;
+
+  &>.title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    .arco-btn {
+      height: 30px;
+      width: 62px;
+      font-size: 12px;
+    }
+  }
+
+  &>.name {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 14px;
+
+    .text {
+      margin-left: 8px;
+    }
+  }
+
+  .content {
+    overflow: auto;
+    margin-top: 20px;
+    .card-item {
+      padding-right: 6px;
+      .card-title {
+        border-left: 4px solid;
+        margin-bottom: 20px;
+        padding-left: 10px;
+      }
+
+      .card-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .item {
+          display: flex;
+          justify-content: space-between;
+          flex-basis: calc(50% - 20px);
+          /* 每个元素占据一行的 50% 宽度 */
+          background-color: var(--bg-2);
+          margin-bottom: 20px;
+          height: 67px;
+          padding: 10px 20px;
+          border-radius: 5px;
+          .controls{
+            font-size: 12px;
+            .edit-btn{
+              font-weight: 400;
+              height: 20px;
+            }
+            .delete-btn{
+              color: var(--sub-color-5);
+              font-weight: 400;
+              height: 20px;
+              margin-left: 10px;
+            }
+          }
+          
+          .name,
+          .type,
+          .check-open{
+            flex: 1;
+          }
+          // .check-open{
+          //   .arco-switch-dot{
+          //     top: 2px;
+          //   }
+          //   .arco-switch{
+          //     min-width: 30px;
+          //   }
+          // }
+
+          .column{
+            display: flex;
+            flex-direction: column;
+            .title{
+              font-size: 12px;
+              color: var(--font-3);
+              margin-bottom: 10px;
+            }
+            .text-ellipsis{
+              max-width: 135px;
+              min-width: 110px;
+            }
+          }
+        }
+      }
+
+    }
+
+
+  }
+}

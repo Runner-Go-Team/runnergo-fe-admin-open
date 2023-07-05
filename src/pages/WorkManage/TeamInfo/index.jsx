@@ -4,7 +4,9 @@ import { IconEdit } from '@arco-design/web-react/icon';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import TextInput from '@components/TextInput';
+import Empty from '@components/Empty'
 import { FE_WOEK_URL } from '@config';
+import { ServiceGetUserVerifyUsable } from '@services/user';
 import { FotmatTimeStamp, openLinkInNewTab } from '@utils';
 import { updateTeamInfo, serviceDisbandTeam, serviceTeamStressPlanList, serviceTeamAutoPlanList } from '@services/team';
 import context from '../Context';
@@ -154,7 +156,9 @@ const TeamInfo = (props) => {
               value={text == null ? value?.description || '' : text}
               onChange={(val) => { setText(val) }}
               onBlur={(val) => {
-                updateTeamData(value?.team_id, { description: val?.target?.value })
+                if(value?.description != val?.target?.value){
+                  updateTeamData(value?.team_id, { description: val?.target?.value })
+                }
               }} disabled={!checkPermission('team_update')}
               spellCheck='false' placeholder={t('text.team_description_placeholder')} style={{ minHeight: 100, width: 316, resize: 'none' }} maxLength={100} />
           </div>
@@ -162,8 +166,18 @@ const TeamInfo = (props) => {
       </div>
       <div className="operation-btn">
         <Button onClick={() => {
-          let newTabUrl = `${FE_WOEK_URL}/#/index?team_id=${value?.team_id}`;
-          openLinkInNewTab(newTabUrl);
+          ServiceGetUserVerifyUsable({ team_id: value?.team_id }).then((res) => {
+            if (res?.code == 0 && res?.data?.is_usable) {
+              let newTabUrl = `${FE_WOEK_URL}/#/index?team_id=${value?.team_id}`;
+              openLinkInNewTab(newTabUrl);
+            } else {
+              Message.error('您当前不在该团队中!');
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            }
+          })
+
         }}>{t('text.join_team')}</Button>
         {value?.type == 1 ?
           (
@@ -196,7 +210,7 @@ const TeamInfo = (props) => {
                 </div>
               </div>
             </div>))
-          ) : <div className="not-plan">{t('text.not_plan')}</div>}
+          ) : <div className='not-plan'><Empty /></div>}
         </div>
         <Tooltip disabled={checkPermission('team_disband')} position='top' trigger='hover' content={t('tooltip.permission_denied')}>
           <Button className='arco-btn-error' disabled={!checkPermission('team_disband')} onClick={() => setDisbandTeamVisible(true)}>{t('modal.dissmissTeam')}</Button>

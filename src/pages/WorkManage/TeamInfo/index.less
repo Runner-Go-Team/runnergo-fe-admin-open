@@ -93,21 +93,26 @@
     .latest-plan-list {
       overflow: hidden;
       overflow-y: auto;
-
+      height: 100%;
+      padding-right: 6px;
+    margin-top: 20px;
       .not-plan {
         margin-top: 20px;
         font-size: 14px;
+        height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
       }
 
       .list-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 316px;
         height: 60px;
         border: 1px solid var(--border-line);
-        padding: 10px 40px;
-        margin-top: 20px;
+        padding: 10px 20px;
+        margin-bottom: 20px;
 
         label {
           line-height: 14px;
@@ -119,12 +124,11 @@
         .right {
           display: flex;
           flex-direction: column;
-          align-items: center;
           width: 50%;
 
           .name {
             font-size: 14px;
-            max-width: 150px;
+            max-width: 100px;
           }
         }
 
@@ -148,6 +152,7 @@
         }
 
         .right {
+          margin-left: 20px;
           .name {
             margin-top: 10px;
           }

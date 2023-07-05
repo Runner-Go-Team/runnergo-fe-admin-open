@@ -1,5 +1,10 @@
 import request from './axios';
 
+// 获取企业信息
+export const getCompanyInfo = (
+    params
+) => request('get', '/v1/company/info', 'json', false, params);
+
 // 获取企业成员列表
 export const getCompanyMemberList = (
     params
@@ -41,3 +46,8 @@ export const companyMemeberImport = (
 export const companyRoleUpdate = (
     params,
 ) => request('post', '/v1/role/company/set', 'json', false, params, {});
+
+// 修改企业成员密码
+export const companyUpdatePassword = (
+    params,
+) => request('post', '/v1/company/member/update_password', 'json', false, params, {});

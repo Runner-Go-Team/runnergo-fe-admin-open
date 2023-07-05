@@ -1,9 +1,8 @@
 .role-admin-manage {
   display: flex;
   flex-direction: column;
-  padding: 0 16px 0 20px;
   height: 100%;
-  margin-top: 6px;
+
   &>.title {
     font-size: 16px;
     font-weight: 600;
@@ -14,6 +13,7 @@
     flex: 1;
     height: 100%;
     margin-top: 8px;
+
     .left {
       width: 245px;
       height: 100%;
@@ -38,7 +38,8 @@
           display: none;
         }
       }
-      .arco-tree-node.arco-tree-node-selected{
+
+      .arco-tree-node.arco-tree-node-selected {
         background-color: var(--select-hover);
       }
     }
@@ -52,7 +53,7 @@
       top: 100px;
       background: var(--module);
       border-radius: 6px;
-      padding: 24px 20px;
+      padding: 24px 20px 0px;
       white-space: nowrap;
 
       .header {
@@ -63,21 +64,24 @@
         .l {
           .arco-input-inner-wrapper {
             background-color: var(--bg);
-            width: 100px;
+            width: 200px;
             height: 30px;
             border-radius: 5px;
           }
 
           .arco-select {
             margin-left: 12px;
-            background: var(--bg-1);
+            background: var(--bg);
             height: 30px;
             border-radius: 5px;
-            .arco-select-view{
+
+            .arco-select-view {
               height: 30px;
+              border-radius: 5px;
             }
           }
-          .role-name{
+
+          .role-name {
             font-size: 16px;
           }
         }
@@ -90,6 +94,10 @@
           .arco-input {
             font-size: 12px;
             color: var(--font-3);
+          }
+          .role_remove{
+            background-color: var(--table-delete) !important;
+            color: var(--common-white);
           }
         }
       }
@@ -135,8 +143,33 @@
       }
 
       .role-member-list {
-        overflow: auto;
+        display: flex;
+        flex-direction: column;
         height: 100%;
+       
+        .arco-table-body{
+          max-height: 63vh;
+        }
+      }
+
+      .arco-tabs {
+        flex: 1;
+
+        .arco-tabs-pane {
+          display: flex;
+          flex-direction: column;
+          .arco-input-group-wrapper {
+            margin-bottom: 20px;
+
+            .arco-input-inner-wrapper {
+              background: var(--bg);
+            }
+          }
+
+          .arco-pagination {
+            margin-top: auto;
+          }
+        }
       }
     }
   }

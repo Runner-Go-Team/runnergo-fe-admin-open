@@ -3,15 +3,49 @@
     flex-direction: column;
     color: #000000;
 
+    .contact-us {
+        margin-top: 20px;
+        font-size: 18px;
+
+        span {
+            color: var(--theme-color);
+            border-bottom: 1px solid var(--theme-color);
+            position: relative;
+            &:hover .img-box{
+                display: flex;
+            }
+            .img-box {
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                border: 1px solid var(--unnamed, #4052EC);
+                background: #FFF;
+                width: 230px;
+                height: 230px;
+                position: absolute;
+                z-index: 1000;
+                top: 33px;
+                left: 0;
+                display: none;
+                img {
+                    width: 210px;
+                    height: 210px;
+                }
+            }
+        }
+    }
+
     // .arco-checkbox-mask{
     //     bac
     // }
     .arco-input-clear-icon {
         color: #000000;
     }
-    .arco-icon-hover:hover::before{
+
+    .arco-icon-hover:hover::before {
         background-color: transparent;
     }
+
     input:-internal-autofill-selected {
         -webkit-text-fill-color: #000000 !important;
         transition: background-color 5000s ease-in-out 0s !important;
@@ -31,6 +65,9 @@
         font-size: 46px;
         line-height: 54px;
         color: #000000;
+        svg{
+            margin-left: 20px;
+        }
     }
 
     .arco-input-inner-wrapper {
@@ -40,9 +77,9 @@
     .config {
         display: flex;
         justify-content: space-between;
-        margin-top: 51px;
+        margin-top: 31px;
         margin-bottom: 18px;
-
+        width: 31.25rem;
         .phone-tip-show {
             color: #999999;
             font-size: 16px;

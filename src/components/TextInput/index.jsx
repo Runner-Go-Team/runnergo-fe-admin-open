@@ -23,7 +23,7 @@ const TextInput = (props, ref) => {
   }));
 
   return (<>
-    {view ? <div className='text-view text-ellipsis'>{text}</div> : <Input allowClear maxLength={maxLength} value={text} placeholder={placeholder || ''} onChange={(val)=>{
+    {view ? <div className='text-view text-ellipsis'>{text}</div> : <Input autoFocus allowClear maxLength={maxLength} value={text} placeholder={placeholder || ''} onChange={(val)=>{
       setText(val);
     }} onBlur={async ()=>{
       toggleView();

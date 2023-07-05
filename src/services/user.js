@@ -44,3 +44,8 @@ export const ServiceGetUserOperationLog = (
 export const ServiceVerifyPassword = (
     params
 ) => request('post', '/v1/user/verify_password', 'json', false, params);
+
+// 验证用户是否是有效用户
+export const ServiceGetUserVerifyUsable= (
+    params
+) => request('get', '/v1/user/verify_usable', 'json', false, params);

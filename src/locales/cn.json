@@ -2,7 +2,8 @@
     "menu": {
         "work": "个人工作台",
         "memberAdmin": "企业成员管理",
-        "roleAdmin": "角色管理"
+        "roleAdmin": "角色管理",
+        "settings":"设置"
     },
     "sign": {
         "title": "RunnerGo全栈测试平台",
@@ -49,6 +50,9 @@
         "pwdFormatError": "密码格式不正确",
         "nickname": "昵称",
         "welcomeTitle": "欢迎来到RunnerGo",
+        "now_contact":"立即联系",
+        "admin_personel":"管理人员",
+        "open_experience_account":"开通体验账号",
         "type": {
             "0": "登录",
             "1": "注册"
@@ -635,6 +639,13 @@
         "change_role":"更改角色",
         "role_save":"保存角色",
         "role_delete":"删除角色",
+        "new_third_notif":"新建三方通知",
+        "update_third_notif":"修改三方通知",
+        "open_third_notif":"禁用|启用三方通知",
+        "del_third_notif":"删除三方通知",
+        "new_third_group_notif": "新建三方组通知",
+        "update_third_group_notif": "修改三方组通知",
+        "del_third_group_notif": "删除三方组通知",
         "role_cannot_delete":"该角色不可删除",
         "save_role_success":"保存角色成功",
         "new_role":"新建角色",
@@ -739,6 +750,7 @@
         "save_only":"仅保存",
         "record_day":"天记录",
         "current_pwd_error":"当前密码不正确",
-        "team_add_member_error":"私有团队不可添加成员"
+        "team_add_member_error":"私有团队不可添加成员",
+        "account_status":"账号状态"
     }
 }

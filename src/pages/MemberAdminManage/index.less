@@ -1,12 +1,18 @@
 .member-admin-manage {
   display: flex;
-  padding: 0 16px 0 20px;
   height: 100%;
+  .arco-pagination-jumper{
+    input{
+      border: 1px solid var(--border-line-1) !important;;
+    }
+  }
+  .arco-pagination .arco-select-view{
+    border: 1px solid var(--border-line-1) !important;
+  }
   &>.left{
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-right: 20px;
     padding-top: 6px;
     .title{
       font-size: 16px;
@@ -18,6 +24,7 @@
       margin-top: 20px;
       margin-bottom: 20px;
       .r{
+        .company_export_member,
         .arco-btn-outline{
           margin-left: 20px;
         }
@@ -27,6 +34,9 @@
       .arco-tabs-header-extra{
         font-size: 12px;
       }
+    }
+    .arco-pagination{
+      margin-top: auto;
     }
   }
   &>.right {

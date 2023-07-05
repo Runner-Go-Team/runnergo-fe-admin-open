@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Table, Button, Modal, Select, Message } from '@arco-design/web-react';
+import { Table, Button, Modal, Select, Message, Input, Pagination } from '@arco-design/web-react';
 import { FotmatTimeStamp } from '@utils';
 import { ServiceGetUserRole } from '@services/role';
 import { companyRoleUpdate } from '@services/company';
@@ -9,10 +9,11 @@ import { debounce, isArray } from 'lodash';
 import React from 'react';
 import Bus from '@utils/eventBus';
 import { useTranslation } from 'react-i18next';
+import { IconSearch } from '@arco-design/web-react/icon';
 
 const Option = Select.Option;
 const RoleMemberList = (props) => {
-  const { value,company_id,team_id } = props;
+  const { value, company_id, team_id } = props;
   const {
     initRoleMemberList,
   } = useContext(context);
@@ -55,7 +56,7 @@ const RoleMemberList = (props) => {
         <span>
           {item?.is_operable_role ? <Button onClick={() => Bus.$emit('openModal', 'CompanyRoleUpdate', {
             user: item, initRoleMemberList,
-            company_id,team_id
+            company_id, team_id
           })} type='text'>{t('text.change')}</Button> : null}
         </span>
       )
@@ -74,7 +75,7 @@ const RoleMemberList = (props) => {
   return (
     <>
       <div className='role-member-list'>
-        <Table pagination={false} ellipsis={true} borderCell={true} columns={columns} data={value} />
+        <Table scroll={{y:true}} pagination={false} ellipsis={true} borderCell={true} columns={columns} data={value} />
       </div>
     </>
 

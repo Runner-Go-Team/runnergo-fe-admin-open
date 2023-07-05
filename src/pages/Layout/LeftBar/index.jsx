@@ -37,32 +37,40 @@ const LeftBar = () => {
             label: t('menu.roleAdmin'),
             icon: <SvgRole className='arco-icon' />
         }
+        ,
+        {
+            key: '/settings',
+            label: t('menu.settings'),
+            icon: <IconSettings className='arco-icon' />
+        }
     ]
     // mode="pop"
     return (
         <div className="left-bar">
             <Menu
                 hasCollapseButton
-                selectedKeys={[location.pathname]}
-                theme="dark"
-                onClickMenuItem={onClickMenuItem}
-                style={{ height: '100%', width: 120 }}
+                selectedKeys={location.pathname.includes('/settings') ? ['/settings'] : [location.pathname]}
+                theme = "dark"
+                onClickMenuItem = { onClickMenuItem }
+                style = {{ height: '100%', width: 120 }}
                 tooltipProps={{
                     color: 'var(--select-hover)',
                     style: { border: 'none', display: 'flex' }
                 }}
-                // icons={{
-                //     collapseDefault: <IconMenuUnfold />
-                // }}
+            // icons={{
+            //     collapseDefault: <IconMenuUnfold />
+            // }}
             >
                 {
-                    menuList.map(item =>
-                        <MenuItem key={item.key} title={item.label}>
-                            <Link to={`${item.key}`} className={cn('runnerGo-menu-item-link', { active: item.key == location.pathname })}>
+                    menuList.map(item => {
+                        console.log(location.pathname.includes(item.key), item.key, location);
+                        return (<MenuItem key={item.key} title={item.label}>
+                            <Link to={`${item.key}`} className={cn('runnerGo-menu-item-link', { active: location.pathname.includes(item.key) })}>
                                 {item.icon}
                                 <label>{item.label}</label>
                             </Link>
-                        </MenuItem>
+                        </MenuItem>)
+                    }
                     )
                 }
                 <div className="dividing-line"></div>

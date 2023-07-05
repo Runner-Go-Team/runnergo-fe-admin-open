@@ -1,3 +1,6 @@
+// 你的app版本
+export const APP_VERSION = '1.0.0'
+
 // 后端http接口地址
 export const RD_BaseURL = {
     development: '开发环境地址',
@@ -5,18 +8,18 @@ export const RD_BaseURL = {
     production: '线上环境地址',
 };
 
-// Domain 用于保存/获取cookie
+// 当前主域 (主要用于储存cookie)
 export const DOMAIN = {
-    development: '', // 开发环境domain 可为空
-    test: '测试环境domain',
-    production: '线上环境domain',
+    development: '',
+    test: '测试环境主域',
+    production: '线上环境主域',
 }
 
 // 前端工作台页面地址
 export const FE_Work_Base_URL = {
-    development: '开发环境地址',
-    test: '测试环境地址',
-    production: '线上环境地址',
+    development: '工作台开发环境地址',
+    test: '工作台测试环境地址',
+    production: '工作台线上环境地址',
 };
 
 export const RD_DOMAIN = DOMAIN[NODE_ENV];

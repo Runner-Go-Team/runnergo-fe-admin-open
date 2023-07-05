@@ -1,13 +1,22 @@
 .left-bar {
-    margin-left: 14px;
     padding-top: 5px;
+    background-color: var(--module);
+    padding: 0 8px;
     .arco-menu.arco-menu-collapse{
         .arco-menu-collapse-button{
             left: 24px;
+            svg{
+                color: var(--font-1);
+            }
         }
         .runnerGo-menu-item-link{
+            cursor: pointer;
             svg{
+                min-width: 16px;
                 margin-left: 5px;
+            }
+            label {
+                cursor: pointer;
             }
         }
     }
@@ -19,6 +28,9 @@
             .arco-icon{
                 font-size: 18px;
             }
+            svg{
+                color: var(--font-1);
+            }
         }
         .arco-menu-collapse-button:hover{
             background-color:transparent;
@@ -27,11 +39,14 @@
             margin: 0 0 8px 0 !important;
             display: flex;
             align-items: center;
+            justify-content: center;
             height: 30px;
-
+            cursor: pointer;
+            color: var(--font-3);
             a {
                 display: flex;
                 align-items: center;
+                width: 100%;
             }
 
             svg {
@@ -42,7 +57,7 @@
 
             label {
                 font-size: 12px;
-                color: var(--font-3);
+                cursor: pointer;
             }
         }
 
@@ -55,11 +70,11 @@
         }
 
         .arco-menu-selected {
-            background-color: var(--module);
+            // background-color: var(--module);
             border-radius: 5px;
 
             label {
-                color: var(--content-color-primary);
+                // color: var(--content-color-primary);
             }
         }
     }
@@ -93,12 +108,10 @@
     }
 
     .arco-tooltip-content {
-        border: 1px solid var(--select-hover) !important;
-
         .runnerGo-menu-item-link {
             display: flex;
             align-items: center;
-
+            cursor: pointer;
             svg {
                 font-size: 16px;
                 color: var(--font-3);
@@ -108,10 +121,12 @@
             label {
                 font-size: 12px;
                 color: var(--font-3);
+                cursor: pointer;
             }
         }
 
         .runnerGo-menu-item-link.active {
+            cursor: pointer;
             .arco-icon {
                 color: var(--theme-color);
             }

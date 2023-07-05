@@ -10,6 +10,9 @@ import ViewTeam from '../ViewTeam';
 import CompanyRoleUpdate from '../CompanyRoleUpdate';
 import RoleDelete from '../RoleDelete';
 import OperationLog from '../OperationLog';
+import AddThirdPartyIntegration from '../AddThirdPartyIntegration';
+import AddNotifGroup from '../AddNotifGroup';
+import CompanyEditPassword from '../CompanyEditPassword';
 
 const GlobalModal = () => {
   const modalsDom = {
@@ -22,7 +25,10 @@ const GlobalModal = () => {
     ViewTeam: ViewTeam, // 查看团队
     CompanyRoleUpdate: CompanyRoleUpdate, // 更改企业角色 
     RoleDelete:RoleDelete, // 删除角色
-    OperationLog:OperationLog // 操作日志
+    OperationLog:OperationLog, // 操作日志
+    AddThirdPartyIntegration:AddThirdPartyIntegration, // 新建第三方集成通知
+    AddNotifGroup, // 新建通知组
+    CompanyEditPassword, // 企业成员修改密码弹窗
   }
 
   const [modals, setModals] = useState([]);

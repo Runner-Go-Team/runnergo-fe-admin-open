@@ -1,93 +1,44 @@
 .member-table {
   border: none;
   font-size: 14px;
-  overflow-y: auto;
-
-  .table-row {
-    display: flex;
-
-    .name,
-    .member-role,
-    .team {
-      flex: 1.8;
-    }
-
-    .company-role {
-      flex: 1;
-    }
-
-    .account-number {
-      flex: 1;
-    }
-
-    .create-time {
-      flex: 1.1;
-    }
-
-    .inviter {
-      flex: 0.7;
-    }
-
-    .operation {
-      // flex: 1.4;
-      width: 224px;
-    }
+  margin-bottom: 10px;
+  img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
   }
-
-  .table-cell {
-
-    box-sizing: border-box;
-
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 10px;
-
-    /* 暗色-模块 */
-
-    background: transparent;
-    /* 边框、线 */
-
-    border: 1px solid var(--bg-1);
-    border-radius: 3px 0px 0px 0px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    img {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-    }
-
-    &.name {
-      span {
-        margin-left: 10px;
+  .arco-table-td {
+    border-left: 1px solid var(--border-line-1) !important;
+    border-bottom: 1px solid var(--border-line-1) !important;
+  }
+  
+  .arco-table-border .arco-table-container {
+    border-right: 1px solid var(--border-line-1);
+    border-top: 1px solid var(--border-line-1);
+  }
+  .arco-table{
+    .arco-table-header{
+      background-color: var(--module) !important;
+      .arco-table-th{
+        background-color: var(--module);
       }
     }
-
-    &.operation {
-      display: flex;
-      justify-content: space-around;
+    .arco-table-body{
+      max-height: 70vh;
+      .operation {
+        display: flex;
+        align-items: center;
+        grid-gap: 26px;
+        svg{
+          fill: var(--font-1);
+          cursor: pointer;
+        }
+        .arco-icon{
+          color: var(--font-1);
+          fill: none;
+        }
+      }
     }
-  }
-
-  .header {
-    font-weight: bold;
-    background-color: var(--module);
-
-    // .table-cell {
-    //   /* 暗色-模块 */
-    //   background: #13132B;
-    // }
   }
 }
 

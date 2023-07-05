@@ -1,0 +1,66 @@
+.settings-about-us {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0px;
+  height: 100%;
+  font-weight: 400;
+  font-size: 14px;
+
+  &>.title {
+    font-weight: 500;
+  }
+
+  .name {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 14px;
+
+    .text {
+      margin-left: 8px;
+    }
+  }
+
+  .content {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-line);
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding-left: 20px;
+
+      .name-text {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      .version {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .other-data {
+    margin-top: 20px;
+
+    .other {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    .doc,
+    .official-site {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 17px;
+      color: var(--theme-color);
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Button, Input, Checkbox, Select, Message, Tooltip } from '@arco-design/web-react';
+import { Modal, Button, Input, Checkbox, Select, Message, Pagination } from '@arco-design/web-react';
 import { useSelector } from 'react-redux';
 import { IconSearch } from '@arco-design/web-react/icon';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import { getRoleList } from '@services/role';
 import { ServiceGetUserRole } from '@services/role';
 import IconInviteMember from '@assets/invite_member.svg';
 import './index.less';
-import { debounce, isArray } from 'lodash';
+import { debounce, isArray, isNumber } from 'lodash';
 const Option = Select.Option;
 
 const TeamMember = (props) => {
@@ -23,14 +23,22 @@ const TeamMember = (props) => {
   const [teamMemberList, setTeamMemberList] = useState([]);
   const [companyRoleList, setCompanyRoleList] = useState([]);
   const [teamRoleList, setTeamRoleList] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
-  const user_id=useSelector((store)=>store?.user?.user_id);
+  const [searchValue, setSearchValue] = useState(null);
+  const [pageSize, setPageSize] = useState(20);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(10);
+  const user_id = useSelector((store) => store?.user?.user_id);
   const company_id = localStorage.getItem('company_id');
   const updateTeamMemberList = () => {
-    getTeamDetail({ team_id, keyword: searchValue }).then((res) => {
-      if (res?.code == 0 && isArray(res?.data?.team?.members)) {
-        setCreatedUserId(res?.data?.team?.created_user_id || '');
-        setTeamMemberList(res?.data?.team?.members);
+    getTeamDetail({ team_id, keyword: searchValue || '', page, size: pageSize }).then((res) => {
+      if (res?.code == 0) {
+        if (isArray(res?.data?.team?.members)) {
+          setCreatedUserId(res?.data?.team?.created_user_id || '');
+          setTeamMemberList(res?.data?.team?.members);
+        }
+        if (isNumber(res?.data?.total)) {
+          setTotal(res.data.total);
+        }
       }
     });
     // 获取企业角色列表
@@ -53,12 +61,19 @@ const TeamMember = (props) => {
   }
   const debounceUpdateTeamMemberList = debounce(() => updateTeamMemberList(), 200);
   useEffect(() => {
-    if (searchValue) {
-      debounceUpdateTeamMemberList();
-    } else {
-      updateTeamMemberList();
+    updateTeamMemberList();
+  }, [page, pageSize]);
+
+  useEffect(() => {
+    if (searchValue != null) {
+      if (page != 1) {
+        // 回到第一页
+        setPage(1);
+      } else {
+        debounceUpdateTeamMemberList();
+      }
     }
-  }, [searchValue]);
+  }, [searchValue])
 
   const transferSuperTeam = (user) => {
     Modal.confirm({
@@ -68,7 +83,7 @@ const TeamMember = (props) => {
         width: '414px',
         height: '220px',
       },
-      content: <p style={{maxHeight:'80px'}}>
+      content: <p style={{ maxHeight: '80px' }}>
         {`${t('text.confirm_transfer_team_admin')}“${user?.nickname || '-'}”？${t('text.transfer_team_admin_success_prompt')}`}
       </p>,
       closable: true,
@@ -113,7 +128,7 @@ const TeamMember = (props) => {
         onCancel={() => setVisible(false)}
         style={{ width: 414, height: 200 }}
       >
-        <p style={{maxHeight:'59px'}}>
+        <p style={{ maxHeight: '59px' }}>
           {t('btn.okDelMum')}{removeUser?.nickname || '-'}
         </p>
       </Modal>
@@ -125,10 +140,16 @@ const TeamMember = (props) => {
         onCancel={onCancel}
         autoFocus={false}
         focusLock={true}
-        footer={null}
+        footer={<>
+          <Pagination pageSize={pageSize} onPageSizeChange={(val) => {
+            setPageSize(val);
+          }} size='default' current={page} onChange={(val) => {
+            setPage(val);
+          }} total={total} showTotal showJumper sizeCanChange sizeOptions={[20, 30, 40, 50, 80, 100]} />
+        </>}
       >
         <div className="member-search-input">
-          <Input allowClear value={searchValue} onChange={setSearchValue} style={{ width: 238, height: 28 }} prefix={<IconSearch />} placeholder={t('text.search_account_or_nickname')} />
+          <Input allowClear value={searchValue || ''} onChange={setSearchValue} style={{ width: 238, height: 28 }} prefix={<IconSearch />} placeholder={t('text.search_account_or_nickname')} />
           <Button onClick={() => {
             if (type == 1) {
               Message.error(t('text.team_add_member_error'))
@@ -187,7 +208,7 @@ const TeamMember = (props) => {
                     });
                   }}
                   value={item?.company_role_name}
-                  getPopupContainer={()=>document.body}
+                  getPopupContainer={() => document.body}
                   triggerProps={{
                     autoAlignPopupWidth: false,
                     autoAlignPopupMinWidth: true,
@@ -221,7 +242,7 @@ const TeamMember = (props) => {
                     });
                   }}
                   value={item?.team_role_name}
-                  getPopupContainer={()=>document.body}
+                  getPopupContainer={() => document.body}
                   triggerProps={{
                     autoAlignPopupWidth: false,
                     autoAlignPopupMinWidth: true,

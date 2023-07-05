@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Button, Tabs, Modal, Select, Message, Tooltip } from '@arco-design/web-react';
+import { Input, Button, Tabs, Modal, Select, Message, Tooltip, Pagination } from '@arco-design/web-react';
 import { IconSearch, IconPlus } from '@arco-design/web-react/icon';
 import { useTranslation } from 'react-i18next';
 import Bus from '@utils/eventBus';
@@ -11,7 +11,7 @@ import { getRoleList, saveRoleInfo, ServiceGetRoleMemberList, ServiceIsRemoveRol
 import { getPermissionList } from '@services/permission';
 import context from './Context';
 import './index.less';
-import { debounce, isArray, isString } from 'lodash';
+import { debounce, isArray, isNumber, isString } from 'lodash';
 import { useSelector } from 'react-redux';
 
 const Option = Select.Option;
@@ -24,6 +24,10 @@ const RoleAdminManage = () => {
   const [roleList, setRoleList] = useState([]);
   const [permissionList, setPermissionList] = useState([]);
   const [roleMemberList, setRoleMemberList] = useState([]);
+  const [searchValue, setSearchValue] = useState(null);
+  const [pageSize, setPageSize] = useState(20);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(10);
   const companyPermissions = useSelector((store) => store?.permission?.companyPermissions);
   const [checkPremissionKeys, setCheckPremissionKeys] = useState([]);
   const [roleName, setRoleName] = useState('');
@@ -41,14 +45,24 @@ const RoleAdminManage = () => {
     }
   }, 200)
   const initRoleMemberList = debounce(async () => {
-    let param = { role_id: CURRENT_ROLE };
-    if (currentRoleType === 2 && currentTeamId) {
-      param.team_id = currentTeamId;
+    let param = { role_id: CURRENT_ROLE, keyword: searchValue || '', page, size: pageSize };
+    if (currentRoleType === 2) {
+      if (currentTeamId) {
+        param.team_id = currentTeamId;
+      } else {
+        setRoleMemberList([]);
+        return;
+      }
     }
     // 获取角色成员列表
     const res = await ServiceGetRoleMemberList(param)
-    if (res?.code == 0 && isArray(res?.data?.members)) {
-      setRoleMemberList(res?.data?.members);
+    if (res?.code == 0) {
+      if (isArray(res?.data?.members)) {
+        setRoleMemberList(res?.data?.members);
+      }
+      if (isNumber(res?.data.total)) {
+        setTotal(res.data.total);
+      }
     }
   }, 200);
   useEffect(() => {
@@ -68,6 +82,8 @@ const RoleAdminManage = () => {
 
   useEffect(() => {
     if (CURRENT_ROLE != null && isString(CURRENT_ROLE)) {
+      setPage(1);
+      setPageSize(20);
       // 获取角色权限列表
       getCurrentPerMissionList();
       // 获取角色成员列表
@@ -77,6 +93,24 @@ const RoleAdminManage = () => {
       setRoleObj(current || {});
     }
   }, [CURRENT_ROLE]);
+
+  useEffect(() => {
+    if (CURRENT_ROLE != null && isString(CURRENT_ROLE)) {
+      // 获取角色成员列表
+      initRoleMemberList();
+    }
+  }, [page, pageSize]);
+
+  useEffect(() => {
+    if (CURRENT_ROLE != null && isString(CURRENT_ROLE) && searchValue != null) {
+      if (page != 1) {
+        // 回到第一页
+        setPage(1);
+      } else {
+        initRoleMemberList();
+      }
+    }
+  }, [searchValue])
 
   useEffect(() => {
     // 获取团队
@@ -157,7 +191,7 @@ const RoleAdminManage = () => {
                     <Select
                       placeholder={t('text.select_team')}
                       bordered={false}
-                      style={{ width: 95, height: 30 }}
+                      style={{ width: 200, height: 30 }}
                       onChange={(value) => {
                         setCurrentTeamId(value);
                       }}
@@ -186,7 +220,7 @@ const RoleAdminManage = () => {
                 )}
                 {roleObj?.is_default != 1 && (
                   <Tooltip disabled={companyPermissions.includes('role_remove')} position='top' trigger='hover' content={t('tooltip.permission_denied')}>
-                    <Button disabled={!companyPermissions.includes('role_remove')} style={{ marginLeft: '20px' }} type='outline' onClick={() => deleteRole()}>{t('text.role_delete')}</Button>
+                    <Button className='role_remove' disabled={!companyPermissions.includes('role_remove')} style={{ marginLeft: '20px' }} type='outline' onClick={() => deleteRole()}>{t('text.role_delete')}</Button>
                   </Tooltip>
                 )}
               </div>
@@ -196,7 +230,13 @@ const RoleAdminManage = () => {
                 <FunctionalAuthority is_update_permission={roleObj?.attr?.is_update_permission} value={permissionList} checkPremissionKeys={checkPremissionKeys} setCheckPremissionKeys={setCheckPremissionKeys} />
               </TabPane>
               <TabPane key='2' title={t('text.role_member')}>
+                <Input allowClear value={searchValue || ''} onChange={setSearchValue} style={{ width: 238, height: 28 }} prefix={<IconSearch />} placeholder={t('text.search_account_or_nickname')} />
                 <RoleMemberList value={roleMemberList} company_id={company_id} team_id={currentTeamId} />
+                <Pagination pageSize={pageSize} onPageSizeChange={(val) => {
+                  setPageSize(val);
+                }} size='default' current={page} onChange={(val) => {
+                  setPage(val);
+                }} total={total} showTotal showJumper sizeCanChange />
               </TabPane>
             </Tabs>
           </div>

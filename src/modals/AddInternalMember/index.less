@@ -96,13 +96,20 @@
       }
     }
   }
-
   .arco-modal-footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    &>.arco-btn{
-      margin: 0 12px;
+   
+  }
+  .arco-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+    // position: absolute;
+    // bottom: 0;
+    // right: 0;
+    .footer-btns{
+      &>.arco-btn{
+        margin: 0 12px;
+      }
     }
   }
 }

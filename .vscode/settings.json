@@ -1,0 +1,8 @@
+{
+  "path-intellisense.autoSlashAfterDirectory": false,
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.mappings": {
+  
+  },
+  "path-intellisense.autoTriggerNextSuggestion": true
+}

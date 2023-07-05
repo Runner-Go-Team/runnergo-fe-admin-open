@@ -7,8 +7,10 @@ import { useSelector, useDispatch } from 'react-redux';
 //     fetchOpenLogin
 // } from '@services/user';
 import { ServiceUserLogin } from '@services/user';
+import PngUsCode from '@assets/us_code.png';
+import SvgCompanyVersion from '@assets/company_version.svg';
 import { setCookie } from '@utils';
-import { isNumber } from 'lodash';
+import { isNumber, trim } from 'lodash';
 import cn from 'classnames';
 import { useNavigate, useLocation } from 'react-router-dom';
 import qs from 'qs';
@@ -159,13 +161,24 @@ const LoginPro = () => {
             setEmailErrorText(t('message.emailEmpty'));
             // 常规限制邮箱长度小于100位
         } else {
-            setEmailError(false);
+            if (trim(email).length < 6 || trim(email).length > 30) {
+                Message.error('账号为6-30位')
+                setEmailError(true);
+                setEmailErrorText('账号应为为6-30位!');
+            } else {
+                setEmailError(false);
+            }
         }
     }
-
     return (
         <div className="login-pro">
             <p className="title">{t('sign.welcomeTitle')}</p>
+            {/* <p className="contact-us">{t('sign.now_contact')}<span>
+                {t('sign.admin_personel')}
+                <div className="img-box">
+                <img src={PngUsCode} alt="" />
+                </div>
+                </span>{t('sign.open_experience_account')}</p> */}
             <div className="config">
                 <div className="login-type">
                     <p className={cn('label', {
@@ -211,6 +224,7 @@ const LoginPro = () => {
                         value={email}
                         onChange={(e) => setEmail(e)}
                         onBlur={() => checkEmail()}
+                        maxLength={30}
                     />
                     {emailError && <p className="text-error">{emailErrorText}</p>}
                 </div>

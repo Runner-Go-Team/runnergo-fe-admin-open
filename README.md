@@ -15,7 +15,9 @@
     yarn start
 ```
 
-## 相关配置
+## 默认超管账号密码
+账号:runnergo
+密码:runnergo
 
 ### OSS
 
@@ -30,6 +32,18 @@ export const OSS_Config = {
     accessKeySecret: 'Your AccessKeySecret',
     bucket: 'Your Bucket',
 }
+```
+
+### 配置前端端服务地址
+
+在根目录的config文件夹中的server文件中
+
+```js
+    const FE_Work_Base_URL = {
+        development: '工作台开发环境地址',
+        test: '工作台测试环境地址',
+        production: '工作台线上环境地址',
+};
 ```
 
 ### 配置后端服务地址
@@ -64,6 +78,4 @@ export const OSS_Config = {
 - react-i18next, 实现多语言切换
 - event-bus-hooks, 是一个效力于react的事件发布订阅工具
 - axios, 一个基于promise的网络请求库,用于调用后端接口
-
-
 

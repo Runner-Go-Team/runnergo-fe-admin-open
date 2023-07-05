@@ -323,7 +323,6 @@ const CreateMember = (props) => {
                 <IconPlus />
                 {t('text.add_team')}
               </Button>
-              <IconQuestionCircle />
             </div>
           </div>
         </div>

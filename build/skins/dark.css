@@ -1,0 +1,73 @@
+:root {
+    /* 主色 */
+    --content-color-primary: #ffffff;
+    /* 背景 */
+    --bg: #0A0A20;
+    /* 模块 */
+    --module: #13132B;
+    /* 主题色 */
+    --theme-color: #4052EC;
+    /* 辅色1 */
+    --sub-color-1: #4CCB7E;
+    /* 辅色1 10% */
+    --sub-color-1-10: rgba(76, 203, 126, 0.1);
+    /* 辅色2 */
+    --sub-color-2: #67C5F6;
+    /* 辅色2 10% */
+    --sub-color-2-10: rgba(103, 197, 246, 0.1);
+    /* 辅色3 */
+    --sub-color-3: #7B40F2;
+    /* 辅色3 10% */
+    --sub-color-3-10: rgba(123, 64, 242, 0.1);
+    /* 辅色4 */
+    --sub-color-4: #ED7847;
+    /* 辅色4 10% */
+    --sub-color-4-10: rgba(237, 120, 71, 0.1);
+    /* 辅色5 */
+    --sub-color-5: #CF515E;
+    /* 辅色5 10% */
+    --sub-color-5-10: rgba(207, 81, 94, 0.1);
+
+    /* 边框、线 */
+    --border-line: #26263C;
+    /* 场景里-选中 */
+    --scene-select: rgba(255, 255, 255, 0.2);
+    /* 场景接口控制器边框 */
+    --scene-border: #36364F;
+    /* 场景内接口权重下面的线 */
+    --scene-api-line: rgba(10, 10, 32, 0.5);
+    /* 前置URL、默认按钮 */
+    --default-button: rgba(64, 82, 236, 0.2);
+    /* 运行 */
+    --run: rgba(76, 203, 126, 0.2);
+    /* 选中+hover */
+    --select-hover: #1B1B32;
+
+    /* 默认字体 */
+    --default-font: #C4C4C4;
+
+    /* 主题色10% */
+    --theme-10: rgba(64, 82, 236, 0.1);
+
+    /* 主题色20% */
+    --theme-20: rgba(64, 82, 236, 0.2);
+
+    /* 弹窗底 */
+    --modal-footer: rgba(10, 10, 32, 0.5);
+
+    /* 发送下拉10% */
+    --send-select-10: rgba(255, 255, 255, 0.1);
+
+    /* 场景内-输入框 */
+    --scene-input: #13132B;
+
+    /* 错误红 */
+    --run-red: #C03C3C;
+
+    /* 字体 */
+    --font-1: #F3F3F3;
+    --font-2: #666666;
+    --font-3: #999999;
+    --font-color: #C4C4C4;
+    --icon-color: #C4C4C4;
+}

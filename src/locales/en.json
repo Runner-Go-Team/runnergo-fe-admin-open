@@ -2,7 +2,8 @@
   "menu": {
     "work": "Personal workbench",
     "memberAdmin": "Enterprise member management",
-    "roleAdmin": "Role management"
+    "roleAdmin": "Role management",
+    "settings": "Settings"
   },
   "sign": {
     "title": "Performance test platform",
@@ -49,6 +50,9 @@
     "pwdFormatError": "Incorrect password format",
     "nickname": "nickname",
     "welcomeTitle": "Welcome to RunnerGo",
+    "now_contact": "Contact Now",
+    "admin_personel": "Administrative Personnel",
+    "open_experience_account": "Open Experience Account",
     "type": {
       "0": "Sign in",
       "1": "logon"
@@ -507,6 +511,13 @@
     "change_role": "Change Role",
     "role_save": "Save Role",
     "role_delete": "Delete Role",
+    "new_third_notif": "Create Third-Party Notification",
+    "update_third_notif": "Update Third-Party Notification",
+    "open_third_notif": "Enable/Disable Third-Party Notification",
+    "del_third_notif": "Delete Third-Party Notification",
+    "new_third_group_notif": "Create Third-Party Group Notification",
+    "update_third_group_notif": "Update Third-Party Group Notification",
+    "del_third_group_notif": "Delete Third-Party Group Notification",
     "role_cannot_delete": "This role cannot be deleted",
     "save_role_success": "Role saved successfully",
     "new_role": "New Role",
@@ -556,7 +567,7 @@
     "init_account": "Initial Account",
     "placeholder_create_member": "Please enter 6-30 characters of letters/numbers/symbols",
     "placeholder_create_member_account_error": "Initial account must be 6-30 characters long and can only contain letters, numbers, and symbols.",
-    "placeholder_create_member_nickname_error":"The nickname must be 2-30 characters long, including letters, numbers, and symbols.",
+    "placeholder_create_member_nickname_error": "The nickname must be 2-30 characters long, including letters, numbers, and symbols.",
     "init_password": "Initial Password",
     "placeholder_create_member_nickname": "Enter 2-30 characters of letters/numbers/symbols/Chinese",
     "please_enter_email": "Enter an email",
@@ -591,7 +602,7 @@
     "account_cannot_null": "Account cannot be empty",
     "modify_password_success": "Password modified successfully",
     "password_cannot_null": "Password cannot be empty",
-    "password_error":"The password must be 6-20 characters long, including letters, numbers, and symbols.",
+    "password_error": "The password must be 6-20 characters long, including letters, numbers, and symbols.",
     "please_enter_nickname": "Please enter a nickname",
     "belong_to_team": "Belong to Team",
     "role": "Role",
@@ -601,16 +612,17 @@
     "edit_member": "Edit member",
     "delete_member": "Delete member",
     "update_company_role": "Update company role",
-    "edit_team": "Edit team",
+    "editor_team": "Edit team",
     "add_team_member": "Add team member",
     "remove_team_member": "Remove team member",
     "change_team_role": "Change team role",
-    "set_role_permissions": "Set role permissions",
+    "setting_role_permisson": "Set role permissions",
     "modify": "Modify",
     "dissolve": "Dissolve",
     "save_only": "Save only",
     "record_day": "day record",
     "current_pwd_error": "Incorrect current password",
-    "team_add_member_error":"Private teams cannot add members"
+    "team_add_member_error": "Private teams cannot add members",
+    "account_status": "账号状态"
   }
 }
