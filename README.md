@@ -37,7 +37,7 @@ export const OSS_Config = {
 ### 配置前端端服务地址
 
 在根目录的config文件夹中的server文件中
-
+该地址为 后端 manager 服务地址 exp http://{manager-host}:{manager:port}
 ```js
     const FE_Work_Base_URL = {
         development: '工作台开发环境地址',
@@ -49,7 +49,7 @@ export const OSS_Config = {
 ### 配置后端服务地址
 
 在根目录的config文件夹中的server文件中
-
+permission 工程地址 exp http://{permission-host}:{permission:port}
 ```js
     const RD_BaseURL = {
         development: '开发环境地址',
@@ -61,6 +61,7 @@ export const OSS_Config = {
 ### 配置存/取Cookie 的Domain
 
 在根目录的config文件夹中的server文件中,主要用于cookie域相关数据的共享.例如已登录状态.
+需要与fe-open client.js 配置相同主域名
 
 ```js
    const DOMAIN = {
