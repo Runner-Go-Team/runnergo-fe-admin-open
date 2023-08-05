@@ -1,21 +1,21 @@
 // 你的app版本
 export const APP_VERSION = '1.0.0'
 
-// 后端http接口地址
+// 后端http接口地址 permission 工程地址 exp http://{permission-host}:{permission:port}
 export const RD_BaseURL = {
     development: '开发环境地址',
     test: '测试环境地址',
     production: '线上环境地址',
 };
 
-// 当前主域 (主要用于储存cookie)
+// 当前主域 (主要用于储存cookie) 需要与fe-open client.js 配置相同主域名
 export const DOMAIN = {
     development: '',
     test: '测试环境主域',
     production: '线上环境主域',
 }
 
-// 前端工作台页面地址
+// 前端工作台页面地址 后端 manager 服务地址 exp http://{manager-host}:{manager:port}
 export const FE_Work_Base_URL = {
     development: '工作台开发环境地址',
     test: '工作台测试环境地址',
